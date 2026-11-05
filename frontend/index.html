@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>XAI — Explain. Understand. Analyze.</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="app">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="brand">
+      <svg class="brand-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 4L11 12L4 20" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20 4L13 12L20 20" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand-name">XAI</span>
+    </div>
+
+    <button class="new-chat-btn">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      New Chat
+    </button>
+
+    <div class="history-header">
+      <span>History</span>
+      <button class="icon-btn" aria-label="Search chats">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+          <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="history-list" id="historyList">
+      <!-- Real conversations are added here by script.js as you chat -->
+      <p class="history-empty" id="historyEmpty">No conversations yet. Start one below.</p>
+    </nav>
+
+    <button class="combine-btn">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 3V16C6 17.6569 7.34315 19 9 19H21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M6 8L3 5M6 8L9 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="18" cy="8" r="2" stroke="currentColor" stroke-width="1.8"/>
+        <circle cx="18" cy="16" r="2" stroke="currentColor" stroke-width="1.8"/>
+      </svg>
+      Combine &amp; Analyse Chats
+    </button>
+
+    <div class="sidebar-footer">
+      <button class="footer-item">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" stroke-width="1.6"/>
+        </svg>
+        Settings
+      </button>
+      <button class="footer-item">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M9.5 9a2.5 2.5 0 015 0c0 1.5-2 1.75-2 3.25" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="12" cy="16.5" r="0.9" fill="currentColor"/>
+        </svg>
+        Help &amp; Support
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-btn topbar-btn" aria-label="Toggle theme">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M12 2.5V4.5M12 19.5V21.5M4.5 12H2.5M21.5 12H19.5M5.6 5.6L4.2 4.2M19.8 19.8L18.4 18.4M18.4 5.6L19.8 4.2M4.2 19.8L5.6 18.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <button class="icon-btn topbar-btn" aria-label="Account">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
+          <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M6 19c1.2-2.5 3.5-4 6-4s4.8 1.5 6 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </header>
+
+    <section class="hero">
+      <div class="hero-intro" id="heroIntro">
+        <svg class="hero-logo" viewBox="0 0 220 60" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="46" font-family="Arial, sans-serif" font-weight="800" font-size="52" fill="currentColor" letter-spacing="-2">X</text>
+          <path d="M108 46L128 12M128 46L108 12" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+          <circle cx="118" cy="8" r="4.5" fill="currentColor"/>
+          <text x="145" y="46" font-family="Arial, sans-serif" font-weight="800" font-size="52" fill="currentColor" letter-spacing="-2">i</text>
+        </svg>
+
+        <h1 class="hero-title">Explain. Understand. Analyze.</h1>
+        <p class="hero-subtitle">Your AI assistant for deeper insights with explanations.</p>
+
+        <div class="feature-cards">
+          <button class="feature-card" id="cardAsk">
+            <span class="feature-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 12C21 16.4183 16.9706 20 12 20C10.5257 20 9.13385 19.6905 7.90621 19.1379L3 20L4.39638 16.3187C3.51554 15.0301 3 13.5722 3 12C3 7.58172 7.02944 4 12 4C16.9706 4 21 7.58172 21 12Z" stroke="currentColor" stroke-width="1.7"/>
+                <circle cx="8.5" cy="12" r="1" fill="currentColor"/>
+                <circle cx="12" cy="12" r="1" fill="currentColor"/>
+                <circle cx="15.5" cy="12" r="1" fill="currentColor"/>
+              </svg>
+            </span>
+            <span class="feature-title">Ask Anything</span>
+            <span class="feature-desc">Get detailed answers with explanations</span>
+          </button>
+
+          <button class="feature-card" id="cardUpload">
+            <span class="feature-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 16V4M12 4L7 9M12 4L17 9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 16V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="feature-title">Upload &amp; Ask</span>
+            <span class="feature-desc">Add files or images and ask questions</span>
+          </button>
+
+          <button class="feature-card" id="cardCombine">
+            <span class="feature-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 3V21" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                <path d="M5 7H19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                <path d="M5 7L2.5 12.5C2.5 14 3.8 15 5 15C6.2 15 7.5 14 7.5 12.5L5 7Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="M19 7L16.5 12.5C16.5 14 17.8 15 19 15C20.2 15 21.5 14 21.5 12.5L19 7Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="M9 21H15" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="feature-title">Combine &amp; Analyse</span>
+            <span class="feature-desc">Compare two chats and analyse both answers</span>
+          </button>
+
+          <button class="feature-card" id="cardInsights">
+            <span class="feature-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 18H15" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                <path d="M10 21H14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                <path d="M12 3C8.5 3 6 5.6 6 9C6 11.2 7.2 12.6 8.2 13.6C8.9 14.3 9.3 14.9 9.4 15.5H14.6C14.7 14.9 15.1 14.3 15.8 13.6C16.8 12.6 18 11.2 18 9C18 5.6 15.5 3 12 3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="feature-title">Get Insights</span>
+            <span class="feature-desc">Gain deeper insights and understanding</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="chat-thread" id="chatThread" hidden>
+        <div class="message-list" id="messageList"></div>
+      </div>
+    </section>
+
+    <footer class="composer-area">
+      <div class="composer">
+        <div class="file-chip" id="fileChip" hidden>
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 3H14L19 8V19C19 20.1046 18.1046 21 17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3Z" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M14 3V8H19" stroke="currentColor" stroke-width="1.6"/>
+          </svg>
+          <span id="fileChipName"></span>
+          <button id="fileChipRemove" aria-label="Remove file">&times;</button>
+        </div>
+        <input type="text" class="composer-input" id="composerInput" placeholder="Type your message here..." />
+        <input type="file" id="fileInputDevice" hidden />
+        <input type="file" id="fileInputImage" accept="image/*" hidden />
+        <input type="file" id="fileInputCamera" accept="image/*" capture="environment" hidden />
+
+        <div class="composer-row">
+          <div class="attach-wrap">
+            <button class="round-btn plus-btn" id="attachToggle" aria-haspopup="true" aria-expanded="false" aria-label="Attach">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+
+            <div class="attach-menu" id="attachMenu">
+              <button class="attach-option">
+                <svg viewBox="0 0 24 24" width="17" height="17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 3H14L19 8V19C19 20.1046 18.1046 21 17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3Z" stroke="currentColor" stroke-width="1.6"/>
+                  <path d="M14 3V8H19" stroke="currentColor" stroke-width="1.6"/>
+                </svg>
+                Upload from device
+              </button>
+              <button class="attach-option">
+                <svg viewBox="0 0 24 24" width="17" height="17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/>
+                  <circle cx="9" cy="10" r="1.6" stroke="currentColor" stroke-width="1.4"/>
+                  <path d="M4.5 17.5L9 13L12 15.5L16 11.5L19.5 15.5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                </svg>
+                Upload image
+              </button>
+              <button class="attach-option">
+                <svg viewBox="0 0 24 24" width="17" height="17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 8C4 6.89543 4.89543 6 6 6H8L9.5 4H14.5L16 6H18C19.1046 6 20 6.89543 20 8V17C20 18.1046 19.1046 19 18 19H6C4.89543 19 4 18.1046 4 17V8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  <circle cx="12" cy="12.5" r="3.2" stroke="currentColor" stroke-width="1.6"/>
+                </svg>
+                Take photo
+              </button>
+            </div>
+          </div>
+
+          <button class="round-btn image-btn" aria-label="Add image">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="9" cy="10" r="1.6" stroke="currentColor" stroke-width="1.4"/>
+              <path d="M4.5 17.5L9 13L12 15.5L16 11.5L19.5 15.5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <div class="spacer"></div>
+
+          <button class="round-btn mic-btn" aria-label="Voice input">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="9" y="3" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M5 11a7 7 0 0014 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M12 18V21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </button>
+
+          <button class="round-btn send-btn" aria-label="Send message">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 19V5M12 5L6 11M12 5L18 11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <p class="disclaimer">XAI can make mistakes. Verify important information.</p>
+    </footer>
+  </main>
+</div>
+
+<div class="toast" id="connectionToast" hidden></div>
+
+<div class="modal-overlay" id="combineOverlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="combineTitle">
+    <div class="modal-header">
+      <h3 id="combineTitle">Combine &amp; Analyse</h3>
+      <button class="modal-close" id="combineClose" type="button" aria-label="Close">&times;</button>
+    </div>
+    <p class="modal-subtitle">Select two conversations to compare and analyse.</p>
+    <div class="combine-list" id="combineList"></div>
+    <div class="modal-actions">
+      <button class="modal-btn ghost" id="combineCancel" type="button">Cancel</button>
+      <button class="modal-btn primary" id="combineRun" type="button">Analyse</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
