@@ -5,12 +5,14 @@
 // Override only if the UI is hosted on a different origin than the API.
 const API_BASE = (() => {
   if (window.XAI_API_BASE != null) return window.XAI_API_BASE;
-  // Served by uvicorn on :8000 → same origin (fast, no CORS)
-  if (location.port === "8000" || (location.hostname === "127.0.0.1" && location.port === "8000")) {
-    return "";
+
+  // Local development
+  if (location.hostname === "127.0.0.1" || location.hostname === "localhost") {
+    return "http://127.0.0.1:8000";
   }
-  // file:// or other static server → talk to default backend
-  return "http://127.0.0.1:8000";
+
+  // Production backend URL
+  return "https://xai-chat-8.vercel.app";
 })();
 
 
